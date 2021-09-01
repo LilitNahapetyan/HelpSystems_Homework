@@ -26,20 +26,21 @@ division between given array elements depending on the passed operation symbol.
 Write the appropriate function for each operation.*/
 
 function calculator(arr_, symbol_) {
-    let result = [];
-    for (let i = 0; i < arr_.length - 1; i += 2) {
-      if (symbol_ == "+") {
-        result.push(arr_[i] + arr_[i+1]);
-      } else if (symbol_ == "-") {
-        result.push(arr_[i] - arr_[i+1]);
-      } else if (symbol_ == "*") {
-        result.push(arr_[i] * arr_[i+1])
-      } else if (symbol_ == "/") {
-        result.push(arr_[i] / arr_[i+1])
-      }
+  let result = [];
+  for (let i = 0; i < arr_.length - 1; i += 1) {
+    if (symbol_ == "+") {
+      result.push(arr_[i] + arr_[i+1]);
+    } else if (symbol_ == "-") {
+      result.push(arr_[i] - arr_[i+1]);
+    } else if (symbol_ == "*") {
+      result.push(arr_[i] * arr_[i+1])
+    } else if (symbol_ == "/") {
+      result.push(arr_[i] / arr_[i+1])
     }
-    return result;
   }
+  return result;
+}
+
 
 
 /*3. Given a phone number.
@@ -108,7 +109,6 @@ function remove(str1, str2) {
   let i = 0;
   let result = "";
   while (i < str1.length) {
-    //console.log(result);
     if (str1.slice(i, i + str2.length) == str2) {
       i += str2.length;
     } else {
@@ -118,6 +118,8 @@ function remove(str1, str2) {
   }
   return result;
 }
+
+console.log(remove('This is some text.','is'));
 
 
 /*7,8. Write a function to compute a new string from the given one by moving the first 
@@ -202,9 +204,9 @@ function longestSubstring(sentence_) {
     let current = "";
     for (let j = i; j < sentence.length; j++) {
       if (sentence[j] == " " || !current.includes(sentence[j])) {
-        current = current + sentence[j];
+        current += sentence[j];
       } else {
-        if (current.length > result.length) {
+        if (current.length >= result.length) {
           result = current;
         }
         break;
@@ -213,6 +215,8 @@ function longestSubstring(sentence_) {
   }
   return result;
 }
+
+console.log(longestSubstring('there are no two words in the english language more harmful than "good job"'));
 
 
 
@@ -332,12 +336,13 @@ Assume that all elements in the array are unique. */
 function subsets(arr) {
   let newArr = [];
 
-  if (arr.length >= 3) {
-    for (let i = 0; i < arr.length - 2; i++) {
-      for (let j = i + 1; j < arr.length; j++) {
-        for (let k = j + 1; k < arr.length; k++) {
-          newArr.push([arr[i], arr[j], arr[k]]);
-        }
+  if (arr.length <= 3) {
+    return arr;
+  }
+  for (let i = 0; i < arr.length - 2; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      for (let k = j + 1; k < arr.length; k++) {
+        newArr.push([arr[i], arr[j], arr[k]]);
       }
     }
   }
